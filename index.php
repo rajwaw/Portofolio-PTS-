@@ -1,4 +1,20 @@
-<?php include "./config.php"; ?>
+<?php 
+include "config.php"; 
+
+if (isset($_POST['submit'])) {
+    $username = $_POST['name'];
+    $email = $_POST['email'];
+    $message = $_POST['message'];
+
+    $sql = "INSERT INTO contact (name, email, message) VALUES ('$username', '$email', '$message')";
+
+    if ($conn->query($sql)) {
+        echo "berhasil";
+    } else {
+        echo "gagal";
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -228,9 +244,9 @@
         <section id="contact">
             <div class="contact main-container">
                 <div class="contact-left">
-                    <form class="contact-form" action="">
+                    <form class="contact-form" action="" method="post">
                         <div>
-                            <input type="text" placeholder="Name" name="name">
+                            <input type="text" placeholder="Name" name="name" >
                         </div>
                         <div>
                             <input type="email" placeholder="Email" name="email">
@@ -245,7 +261,7 @@
                             ></textarea>
                         </div>
                         <div>
-                            <button class="btn-submit">Send Message</button>
+                            <input type="submit" value="Send Message" class="btn-submit">
                         </div>
                     </form>
                 </div>
@@ -344,5 +360,5 @@
       <!-- End Footer -->
        
       <script src="JS/main.js"></script>
-    </body>
-</html>  
+    </body>
+</html>
